@@ -1,0 +1,24 @@
+# Local-only workflow files (never commit)
+repo-cleaning-prep.md
+ISSUES.md
+ins.md
+
+# Dependencies and build
+node_modules/
+dist/
+.turbo/
+coverage/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
