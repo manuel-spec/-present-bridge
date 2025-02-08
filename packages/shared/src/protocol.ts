@@ -190,6 +190,14 @@ export interface CreateRoomResponse {
   room: RoomSummary;
 }
 
+export interface ListRoomsResponse {
+  rooms: RoomSummary[];
+}
+
 export interface GetRoomResponse {
   room: RoomSummary;
+}
+
+export interface ApiErrorResponse {
+  error: import("./errors.js").ErrorPayload;
 }
