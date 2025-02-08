@@ -48,4 +48,12 @@ describe("RoomService", () => {
 
     expect(() => service.getRoom("room-a")).toThrow(AppError);
   });
+
+  it("lists active rooms", () => {
+    const service = new RoomService();
+    service.createRoom("room-a");
+    service.createRoom("room-b");
+
+    expect(service.listRooms()).toHaveLength(2);
+  });
 });
