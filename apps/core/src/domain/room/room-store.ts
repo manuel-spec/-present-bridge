@@ -46,4 +46,8 @@ export class RoomStore {
   list(): RoomRecord[] {
     return [...this.rooms.values()];
   }
+
+  count(): number {
+    return this.rooms.size;
+  }
 }
