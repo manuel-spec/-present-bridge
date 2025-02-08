@@ -24,6 +24,10 @@ export class RoomService {
     return this.toSummary(room);
   }
 
+  listRooms(): RoomSummary[] {
+    return this.store.list().map((room) => this.toSummary(room));
+  }
+
   joinRoom(roomId: string, displayName: string, socket: WebSocket): PeerSession {
     const room = this.store.getOrCreate(roomId);
     const peerId = randomUUID();
