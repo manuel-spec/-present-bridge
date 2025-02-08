@@ -1,10 +1,14 @@
 import type { FastifyInstance } from "fastify";
-import type { CreateRoomRequest, CreateRoomResponse, GetRoomResponse } from "@packet-bridge/shared";
+import type { CreateRoomRequest, CreateRoomResponse, GetRoomResponse, ApiErrorResponse, ListRoomsResponse } from "@packet-bridge/shared";
 import { isAppError } from "../../lib/errors.js";
 import type { RoomService } from "../../domain/room/room-service.js";
 
 export function registerRoomRoutes(app: FastifyInstance, roomService: RoomService): void {
-  app.post<{ Body: CreateRoomRequest; Reply: CreateRoomResponse }>("/rooms", async (request, reply) => {
+  app.get<{ Reply: ListRoomsResponse }>("/rooms", async (_request, reply) => {
+    return reply.send({ rooms: roomService.listRooms() });
+  });
+
+  app.post<{ Body: CreateRoomRequest; Reply: CreateRoomResponse | ApiErrorResponse }>("/rooms", async (request, reply) => {
     try {
       const room = roomService.createRoom(request.body?.roomId);
       return reply.code(201).send({ room });
@@ -16,7 +20,7 @@ export function registerRoomRoutes(app: FastifyInstance, roomService: RoomServic
     }
   });
 
-  app.get<{ Params: { roomId: string }; Reply: GetRoomResponse }>(
+  app.get<{ Params: { roomId: string }; Reply: GetRoomResponse | ApiErrorResponse }>(
     "/rooms/:roomId",
     async (request, reply) => {
       try {
