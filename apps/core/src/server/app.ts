@@ -19,10 +19,18 @@ export async function createApp(env: Env, services: AppServices) {
     },
   });
 
+  app.addHook("onRequest", async (request) => {
+    request.log.debug({ url: request.url, method: request.method }, "incoming request");
+  });
+
   registerHealthRoutes(app);
   registerInfoRoutes(app, env);
   registerRoomRoutes(app, services.roomService);
   await registerSignalingWebSocket(app, env, services.roomService, services.sfuService);
+
+  app.setNotFoundHandler((_request, reply) => {
+    reply.code(404).send({ error: { code: "NOT_FOUND", message: "Route not found" } });
+  });
 
   return app;
 }
