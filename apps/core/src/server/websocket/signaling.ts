@@ -1,6 +1,6 @@
 import websocket from "@fastify/websocket";
 import type { FastifyInstance } from "fastify";
-import type { SignalingDispatcher } from "../../signaling/dispatcher.js";
+import { SignalingDispatcher } from "../../signaling/dispatcher.js";
 import type { RoomService } from "../../domain/room/room-service.js";
 import type { SfuService } from "../../media/sfu-service.js";
 import type { Env } from "../../config/env.js";
