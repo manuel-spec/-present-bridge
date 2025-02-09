@@ -38,6 +38,7 @@ pnpm dev
 | GET | `/health` | Server health and uptime |
 | GET | `/info` | Connection details for manual client setup |
 | POST | `/rooms` | Create a room |
+| GET | `/rooms` | List active rooms |
 | GET | `/rooms/:roomId` | Room metadata |
 | WS | `/ws` | Signaling channel |
 
