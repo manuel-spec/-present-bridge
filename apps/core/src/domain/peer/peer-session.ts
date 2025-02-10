@@ -17,7 +17,7 @@ export class PeerSession {
   }
 
   send(message: unknown): void {
-    if (this.socket.readyState === this.socket.OPEN) {
+    if (this.socket.readyState === WebSocket.OPEN) {
       this.socket.send(JSON.stringify(message));
     }
   }
