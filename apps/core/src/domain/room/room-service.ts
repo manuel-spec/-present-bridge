@@ -12,8 +12,15 @@ export class RoomService {
   private readonly socketToPeer = new WeakMap<WebSocket, string>();
 
   createRoom(roomId?: string): RoomSummary {
-    const room = this.store.create(roomId);
-    return this.toSummary(room);
+    try {
+      const room = this.store.create(roomId);
+      return this.toSummary(room);
+    } catch (error) {
+      if (error instanceof Error && error.message.startsWith("Room already exists")) {
+        throw new AppError(ErrorCode.INTERNAL_ERROR, error.message);
+      }
+      throw error;
+    }
   }
 
   getRoom(roomId: string): RoomSummary {
