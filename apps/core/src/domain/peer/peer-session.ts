@@ -1,4 +1,4 @@
-import type { WebSocket } from "ws";
+import WebSocket from "ws";
 import type { types as MediasoupTypes } from "mediasoup";
 
 export class PeerSession {

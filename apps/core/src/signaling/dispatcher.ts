@@ -4,7 +4,7 @@ import {
   type ClientMessage,
   type ServerMessage,
 } from "@packet-bridge/shared";
-import type { WebSocket } from "ws";
+import WebSocket from "ws";
 import type { RoomService } from "../domain/room/room-service.js";
 import type { SfuService } from "../media/sfu-service.js";
 import { AppError, isAppError, toAppError } from "../lib/errors.js";
@@ -201,7 +201,7 @@ export class SignalingDispatcher {
   }
 
   private send(socket: WebSocket, message: ServerMessage): void {
-    if (socket.readyState === socket.OPEN) {
+    if (socket.readyState === WebSocket.OPEN) {
       socket.send(JSON.stringify(message));
     }
   }
