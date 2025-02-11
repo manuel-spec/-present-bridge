@@ -17,6 +17,7 @@
     "dev": "tsc -p tsconfig.json --watch",
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@packet-bridge/tsconfig": "workspace:*",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "@vitest/coverage-v8": "^3.0.5"
   }
 }

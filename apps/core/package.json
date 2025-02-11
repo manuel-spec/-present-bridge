@@ -10,6 +10,7 @@
     "start": "node dist/index.js",
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "smoke": "tsx scripts/smoke-ws.ts"
   },
@@ -29,6 +30,7 @@
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5",
+    "@vitest/coverage-v8": "^3.0.5",
     "ws": "^8.18.0"
   }
 }
