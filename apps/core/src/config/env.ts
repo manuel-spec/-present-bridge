@@ -1,5 +1,4 @@
 import os from "node:os";
-import { config as loadDotenv } from "dotenv";
 import { z } from "zod";
 import {
   APP_VERSION,
@@ -8,8 +7,6 @@ import {
   DEFAULT_RTC_MIN_PORT,
   WS_PATH,
 } from "@packet-bridge/shared";
-
-loadDotenv();
 
 const envSchema = z.object({
   HOST: z.string().default("0.0.0.0"),
@@ -29,41 +26,61 @@ const envSchema = z.object({
     .transform((value) => value === "true"),
 });
 
-const parsed = envSchema.safeParse(process.env);
-
-if (!parsed.success) {
-  console.error("Invalid environment configuration:", parsed.error.flatten().fieldErrors);
-  process.exit(1);
-}
-
-const raw = parsed.data;
-
-if (raw.RTC_MIN_PORT >= raw.RTC_MAX_PORT) {
-  console.error("RTC_MIN_PORT must be less than RTC_MAX_PORT");
-  process.exit(1);
-}
-
-const announcedIp = raw.ANNOUNCED_IP ?? (raw.DEV_MODE ? "127.0.0.1" : undefined);
-
-if (!announcedIp) {
-  console.error(
-    "ANNOUNCED_IP is required. Set your LAN IP so mobile and desktop clients can connect via WebRTC.",
-  );
-  process.exit(1);
-}
-
-export const env = {
-  host: raw.HOST,
-  httpPort: raw.HTTP_PORT,
-  announcedIp,
-  rtcMinPort: raw.RTC_MIN_PORT,
-  rtcMaxPort: raw.RTC_MAX_PORT,
-  mediasoupWorkerCount: raw.MEDIASOUP_WORKER_COUNT ?? os.cpus().length,
-  mdnsEnabled: raw.MDNS_ENABLED,
-  mdnsServiceName: raw.MDNS_SERVICE_NAME,
-  devMode: raw.DEV_MODE,
-  wsPath: WS_PATH,
-  version: APP_VERSION,
+export type Env = {
+  host: string;
+  httpPort: number;
+  announcedIp: string;
+  rtcMinPort: number;
+  rtcMaxPort: number;
+  mediasoupWorkerCount: number;
+  mdnsEnabled: boolean;
+  mdnsServiceName: string;
+  devMode: boolean;
+  wsPath: string;
+  version: string;
 };
 
-export type Env = typeof env;
+export class EnvValidationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "EnvValidationError";
+  }
+}
+
+export function parseEnv(source: NodeJS.ProcessEnv): Env {
+  const parsed = envSchema.safeParse(source);
+
+  if (!parsed.success) {
+    throw new EnvValidationError(
+      `Invalid environment configuration: ${JSON.stringify(parsed.error.flatten().fieldErrors)}`,
+    );
+  }
+
+  const raw = parsed.data;
+
+  if (raw.RTC_MIN_PORT >= raw.RTC_MAX_PORT) {
+    throw new EnvValidationError("RTC_MIN_PORT must be less than RTC_MAX_PORT");
+  }
+
+  const announcedIp = raw.ANNOUNCED_IP ?? (raw.DEV_MODE ? "127.0.0.1" : undefined);
+
+  if (!announcedIp) {
+    throw new EnvValidationError(
+      "ANNOUNCED_IP is required. Set your LAN IP so mobile and desktop clients can connect via WebRTC.",
+    );
+  }
+
+  return {
+    host: raw.HOST,
+    httpPort: raw.HTTP_PORT,
+    announcedIp,
+    rtcMinPort: raw.RTC_MIN_PORT,
+    rtcMaxPort: raw.RTC_MAX_PORT,
+    mediasoupWorkerCount: raw.MEDIASOUP_WORKER_COUNT ?? os.cpus().length,
+    mdnsEnabled: raw.MDNS_ENABLED,
+    mdnsServiceName: raw.MDNS_SERVICE_NAME,
+    devMode: raw.DEV_MODE,
+    wsPath: WS_PATH,
+    version: APP_VERSION,
+  };
+}
