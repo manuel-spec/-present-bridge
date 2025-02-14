@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { bootstrap, registerSignalHandlers } from "./bootstrap.js";
+import { LanScanner } from "./discovery/lan-scanner.js";
 import { createTestEnv } from "./test/helpers.js";
 
 vi.mock("./media/worker-pool.js", () => ({
@@ -25,6 +26,16 @@ vi.mock("./discovery/mdns.js", () => ({
   })),
 }));
 
+const { scanAndLog } = vi.hoisted(() => ({
+  scanAndLog: vi.fn().mockResolvedValue({ devices: [], networks: [], scannedAt: "", durationMs: 0 }),
+}));
+
+vi.mock("./discovery/lan-scanner.js", () => ({
+  LanScanner: vi.fn().mockImplementation(() => ({
+    scanAndLog,
+  })),
+}));
+
 describe("bootstrap", () => {
   it("starts workers, HTTP server, and mdns", async () => {
     const result = await bootstrap(createTestEnv({ httpPort: 0, mdnsEnabled: true }));
@@ -37,6 +48,12 @@ describe("bootstrap", () => {
     const result = await bootstrap(createTestEnv({ httpPort: 0, mdnsEnabled: false }));
     expect(result.mdnsBroadcaster.start).toHaveBeenCalledOnce();
     await result.shutdown("TEST");
+  });
+
+  it("runs LAN scan when enabled", async () => {
+    await bootstrap(createTestEnv({ httpPort: 0, lanScanEnabled: true }));
+    expect(LanScanner).toHaveBeenCalledOnce();
+    expect(scanAndLog).toHaveBeenCalledOnce();
   });
 });
 

@@ -2,6 +2,7 @@ import { MDNS_PROTOCOL, MDNS_SERVICE_TYPE } from "@packet-bridge/shared";
 import type { Env } from "./config/env.js";
 import { RoomService } from "./domain/room/room-service.js";
 import { MdnsBroadcaster } from "./discovery/mdns.js";
+import { LanScanner } from "./discovery/lan-scanner.js";
 import { shutdown } from "./lib/shutdown.js";
 import { RouterManager } from "./media/router-manager.js";
 import { SfuService } from "./media/sfu-service.js";
@@ -43,6 +44,11 @@ export async function bootstrap(env: Env): Promise<BootstrapResult> {
     },
     "Packet Bridge core server started",
   );
+
+  if (env.lanScanEnabled) {
+    const lanScanner = new LanScanner(env);
+    void lanScanner.scanAndLog(app.log);
+  }
 
   const runShutdown = async (signal: string) => {
     app.log.info({ signal }, "Shutting down");

@@ -24,6 +24,16 @@ const envSchema = z.object({
     .enum(["true", "false"])
     .default("false")
     .transform((value) => value === "true"),
+  LAN_SCAN_ENABLED: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((value) => value === "true"),
+  LAN_SCAN_TIMEOUT_MS: z.coerce.number().int().min(500).max(60000).default(5000),
+  LAN_SCAN_CONCURRENCY: z.coerce.number().int().min(1).max(256).default(64),
+  LAN_SCAN_MDNS_ENABLED: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((value) => value === "true"),
 });
 
 export type Env = {
@@ -36,6 +46,10 @@ export type Env = {
   mdnsEnabled: boolean;
   mdnsServiceName: string;
   devMode: boolean;
+  lanScanEnabled: boolean;
+  lanScanTimeoutMs: number;
+  lanScanConcurrency: number;
+  lanScanMdnsEnabled: boolean;
   wsPath: string;
   version: string;
 };
@@ -80,6 +94,10 @@ export function parseEnv(source: NodeJS.ProcessEnv): Env {
     mdnsEnabled: raw.MDNS_ENABLED,
     mdnsServiceName: raw.MDNS_SERVICE_NAME,
     devMode: raw.DEV_MODE,
+    lanScanEnabled: raw.LAN_SCAN_ENABLED,
+    lanScanTimeoutMs: raw.LAN_SCAN_TIMEOUT_MS,
+    lanScanConcurrency: raw.LAN_SCAN_CONCURRENCY,
+    lanScanMdnsEnabled: raw.LAN_SCAN_MDNS_ENABLED,
     wsPath: WS_PATH,
     version: APP_VERSION,
   };

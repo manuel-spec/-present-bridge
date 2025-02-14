@@ -50,4 +50,12 @@ describe("parseEnv", () => {
     const env = parseEnv({ DEV_MODE: "true", MEDIASOUP_WORKER_COUNT: "2" });
     expect(env.mediasoupWorkerCount).toBe(2);
   });
+
+  it("defaults LAN scan settings", () => {
+    const env = parseEnv({ DEV_MODE: "true" });
+    expect(env.lanScanEnabled).toBe(true);
+    expect(env.lanScanTimeoutMs).toBe(5000);
+    expect(env.lanScanConcurrency).toBe(64);
+    expect(env.lanScanMdnsEnabled).toBe(true);
+  });
 });
