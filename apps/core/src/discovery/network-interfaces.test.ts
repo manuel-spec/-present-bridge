@@ -14,6 +14,10 @@ describe("network-interfaces", () => {
     expect(isPrivateIPv4("8.8.8.8")).toBe(false);
   });
 
+  it("skips interfaces with missing entries", () => {
+    expect(getLocalIPv4Networks({ eth0: undefined })).toEqual([]);
+  });
+
   it("collects local private IPv4 networks", () => {
     const networks = getLocalIPv4Networks({
       eth0: [

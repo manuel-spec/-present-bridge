@@ -53,4 +53,42 @@ describe("discoverMdnsServices", () => {
 
     vi.useRealTimers();
   });
+
+  it("skips invalid addresses and reuses host fallback", async () => {
+    vi.useFakeTimers();
+    const handlers = new Map<string, (service: unknown) => void>();
+
+    find.mockImplementation(() => ({
+      on: vi.fn((event: string, handler: (service: unknown) => void) => {
+        if (event === "up") {
+          handlers.set(`${handlers.size}`, handler);
+        }
+      }),
+      stop,
+    }));
+
+    const promise = discoverMdnsServices(500, ["http"]);
+
+    handlers.get("0")?.({
+      name: "printer",
+      type: "http",
+      host: "192.168.1.30",
+      port: 80,
+      addresses: ["fe80::1", "", "192.168.1.30"],
+    });
+    handlers.get("0")?.({
+      name: "printer",
+      type: "http",
+      host: "192.168.1.30",
+      port: 80,
+    });
+
+    await vi.advanceTimersByTimeAsync(500);
+    const servicesByIp = await promise;
+
+    expect(servicesByIp.get("192.168.1.30")).toHaveLength(2);
+    expect(servicesByIp.has("fe80::1" as never)).toBe(false);
+
+    vi.useRealTimers();
+  });
 });
