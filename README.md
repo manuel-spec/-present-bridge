@@ -66,3 +66,26 @@ pnpm build    # Build all packages
 pnpm test     # Run tests
 pnpm lint     # Typecheck all packages
 ```
+
+## Docker
+
+Multi-stage image matching the project layout: `deps` → `development` | `test` | `build` → `production`.
+
+```bash
+# Production core server (set your LAN IP for WebRTC)
+ANNOUNCED_IP=192.168.1.100 docker compose up app --build
+
+# Development with live reload
+ANNOUNCED_IP=192.168.1.100 docker compose up dev --build
+
+# CI test stage (lint + coverage)
+docker compose --profile ci build test
+```
+
+| Stage | Target | Purpose |
+|-------|--------|---------|
+| `development` | `dev` service | Hot reload via `pnpm dev:docker` |
+| `test` | `test` service | Runs `pnpm lint` and `pnpm test:coverage` |
+| `production` | `app` service | Runs built core server on port `3000` |
+
+Expose TCP `3000` and UDP/TCP `40000–49999` for mediasoup WebRTC. Set `ANNOUNCED_IP` to the IP clients use to reach the host (not `127.0.0.1` for real LAN devices).
