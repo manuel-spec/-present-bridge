@@ -1,0 +1,20 @@
+node_modules
+dist
+.turbo
+coverage
+.git
+.gitignore
+.env
+.env.*
+*.log
+
+# Local-only workflow files
+repo-cleaning-prep.md
+ISSUES.md
+ins.md
+
+# IDE and OS
+.idea
+.vscode
+.DS_Store
+Thumbs.db
