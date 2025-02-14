@@ -6,6 +6,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --filter=@packet-bridge/core",
+    "dev:docker": "turbo run dev --filter=@packet-bridge/core",
+    "start:docker": "node apps/core/dist/index.js",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:coverage": "turbo run test:coverage",
