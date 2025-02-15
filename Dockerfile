@@ -1,8 +1,12 @@
 # syntax=docker/dockerfile:1
 
-FROM node:20-alpine AS base
+# Debian slim: mediasoup ships prebuilt glibc workers (Alpine/musl must compile from source).
+FROM node:20-bookworm-slim AS base
 WORKDIR /app
-RUN apk add --no-cache libc6-compat
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends python3 python3-pip build-essential \
+  && rm -rf /var/lib/apt/lists/* \
+  && ln -sf python3 /usr/bin/python
 RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
 
 FROM base AS deps
@@ -28,6 +32,7 @@ RUN pnpm run test:coverage
 FROM deps AS build
 COPY . .
 ENV DOCKER=1
+RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 
 FROM base AS production

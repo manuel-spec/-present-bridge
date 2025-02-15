@@ -5,16 +5,17 @@ services:
       target: production
     ports:
       - "3000:3000"
-      - "40000-49999:40000-49999/tcp"
-      - "40000-49999:40000-49999/udp"
+      - "40000-40020:40000-40020/tcp"
+      - "40000-40020:40000-40020/udp"
     environment:
       HOST: 0.0.0.0
       HTTP_PORT: 3000
       ANNOUNCED_IP: ${ANNOUNCED_IP:-127.0.0.1}
       RTC_MIN_PORT: 40000
-      RTC_MAX_PORT: 49999
+      RTC_MAX_PORT: 40020
       MEDIASOUP_WORKER_COUNT: 1
       MDNS_ENABLED: "false"
+      LAN_SCAN_ENABLED: "false"
       DEV_MODE: "false"
     restart: unless-stopped
 
@@ -24,15 +25,15 @@ services:
       target: development
     ports:
       - "3000:3000"
-      - "40000-49999:40000-49999/tcp"
-      - "40000-49999:40000-49999/udp"
+      - "40000-40020:40000-40020/tcp"
+      - "40000-40020:40000-40020/udp"
     environment:
       DOCKER: "1"
       HOST: 0.0.0.0
       HTTP_PORT: 3000
       ANNOUNCED_IP: ${ANNOUNCED_IP:-127.0.0.1}
       RTC_MIN_PORT: 40000
-      RTC_MAX_PORT: 49999
+      RTC_MAX_PORT: 40020
       MEDIASOUP_WORKER_COUNT: 1
       MDNS_ENABLED: "false"
       DEV_MODE: "true"
