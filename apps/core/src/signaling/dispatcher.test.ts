@@ -99,6 +99,42 @@ describe("SignalingDispatcher", () => {
     expect(error?.payload).toMatchObject({ code: ErrorCode.PEER_NOT_FOUND });
   });
 
+  it("errors when requesting capabilities outside a room", async () => {
+    const socket = createMockSocket();
+    await dispatcher.handle(socket, {
+      type: "room.join",
+      payload: { roomId: "room-a", displayName: "Alice" },
+    });
+    roomService.getSessionBySocket(socket).roomId = null;
+
+    await dispatcher.handle(socket, {
+      type: "media.getRouterRtpCapabilities",
+      requestId: "caps-error",
+      payload: {},
+    });
+
+    const error = findMessageByType(parseSentMessages(socket), "error");
+    expect(error?.payload).toMatchObject({ code: ErrorCode.PEER_NOT_IN_ROOM });
+  });
+
+  it("errors when creating transport outside a room", async () => {
+    const socket = createMockSocket();
+    await dispatcher.handle(socket, {
+      type: "room.join",
+      payload: { roomId: "room-a", displayName: "Alice" },
+    });
+    roomService.getSessionBySocket(socket).roomId = null;
+
+    await dispatcher.handle(socket, {
+      type: "media.createWebRtcTransport",
+      requestId: "transport-error",
+      payload: { direction: "sendrecv" },
+    });
+
+    const error = findMessageByType(parseSentMessages(socket), "error");
+    expect(error?.payload).toMatchObject({ code: ErrorCode.PEER_NOT_IN_ROOM });
+  });
+
   it("errors when producing outside a room", async () => {
     const socket = createMockSocket();
     await dispatcher.handle(socket, {

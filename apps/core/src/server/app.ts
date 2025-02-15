@@ -1,7 +1,10 @@
 import Fastify from "fastify";
+import { createAdminService } from "../admin/admin-service.js";
 import type { Env } from "../config/env.js";
 import type { RoomService } from "../domain/room/room-service.js";
 import type { SfuService } from "../media/sfu-service.js";
+import { createMetricsService } from "../metrics/metrics-service.js";
+import { registerAdminRoutes } from "./routes/admin.js";
 import { registerHealthRoutes } from "./routes/health.js";
 import { registerInfoRoutes } from "./routes/info.js";
 import { registerRoomRoutes } from "./routes/rooms.js";
@@ -26,6 +29,18 @@ export async function createApp(env: Env, services: AppServices) {
   registerHealthRoutes(app);
   registerInfoRoutes(app, env);
   registerRoomRoutes(app, services.roomService);
+
+  const adminService = createAdminService({ roomService: services.roomService });
+  const metricsService = createMetricsService({
+    roomService: services.roomService,
+    version: env.version,
+  });
+  registerAdminRoutes(app, {
+    adminService,
+    metricsService,
+    version: env.version,
+  });
+
   await registerSignalingWebSocket(app, env, services.roomService, services.sfuService);
 
   app.setNotFoundHandler((_request, reply) => {

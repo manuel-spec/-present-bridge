@@ -12,7 +12,7 @@ export default defineConfig({
         "src/test/**",
         "src/index.ts",
         "src/config/load-env.ts",
-        "src/discovery/types.ts",
+        "src/**/types.ts",
       ],
       thresholds: {
         lines: 95,
