@@ -222,7 +222,7 @@ export class MetricsCollector {
     this.peerTransportsGauge.reset();
     this.peerProducersGauge.reset();
     this.peerConsumersGauge.reset();
-    this.updatePeerMediaGauges(peers);
+    this.updatePeerMediaGauges();
 
     return {
       collectedAtMs: Date.now(),
@@ -305,7 +305,7 @@ export class MetricsCollector {
     };
   }
 
-  private updatePeerMediaGauges(peers: PeerMetricsSnapshot): void {
+  private updatePeerMediaGauges(): void {
     for (const room of this.roomService.listRooms()) {
       for (const peer of this.roomService.getPeersInRoom(room.roomId)) {
         try {

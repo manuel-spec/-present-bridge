@@ -132,8 +132,6 @@ export class RoomMetricsAggregator {
   }
 
   private buildPeerMetrics(record: PeerMetricsRecord, now: number): PeerMetrics {
-    const windowMs = this.config.rollingWindow.windowMs;
-
     const latency = this.jitterCalculator.compute(record.latencySamples, now);
     const upload = this.bandwidthEstimator.estimate(record.bandwidthSamples, "upload", now);
     const download = this.bandwidthEstimator.estimate(record.bandwidthSamples, "download", now);

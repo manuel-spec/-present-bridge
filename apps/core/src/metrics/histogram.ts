@@ -296,9 +296,10 @@ export function createHistogram(
 }
 
 export function histogramMean(histogram: Histogram, labels?: LabelSet): number {
-  const count = histogram.getCount(labels);
+  const resolvedLabels = labels ?? {};
+  const count = histogram.getCount(resolvedLabels);
   if (count === 0) {
     return 0;
   }
-  return histogram.getSum(labels) / count;
+  return histogram.getSum(resolvedLabels) / count;
 }

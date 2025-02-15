@@ -164,12 +164,12 @@ export class MetricRegistry {
 
   /** Collects only counter and gauge samples (excludes histograms). */
   collectSamples(): MetricSample[] {
-    return this.collect().samples;
+    return [...this.collect().samples];
   }
 
   /** Collects only histogram samples. */
   collectHistograms(): HistogramSample[] {
-    return this.collect().histograms;
+    return [...this.collect().histograms];
   }
 
   /** Returns the number of time series across all metrics. */

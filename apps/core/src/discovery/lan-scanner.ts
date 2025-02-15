@@ -45,7 +45,7 @@ export class LanScanner {
     for (const [ip, services] of mdnsServicesByIp.entries()) {
       const existing = devices.get(ip);
       if (existing) {
-        existing.sources = [...new Set([...existing.sources, "mdns"])];
+        existing.sources = [...new Set([...existing.sources, "mdns"])] as Array<"ping" | "mdns">;
         existing.services = services;
         continue;
       }

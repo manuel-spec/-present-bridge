@@ -10,12 +10,12 @@ export interface AdminRouteDeps {
 
 export function registerAdminRoutes(app: FastifyInstance, deps: AdminRouteDeps): void {
   app.get("/admin/status", async (_request, reply) => {
-    const status = await deps.adminService.getStatus({ version: deps.version });
+    const status = await deps.adminService.getStatus();
     return reply.send(status);
   });
 
   app.get("/admin/diagnostics", async (_request, reply) => {
-    const diagnostics = await deps.adminService.getDiagnostics({ version: deps.version });
+    const diagnostics = await deps.adminService.getDiagnostics();
     return reply.send(diagnostics);
   });
 

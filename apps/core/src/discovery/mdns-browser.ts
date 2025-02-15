@@ -1,6 +1,15 @@
-import Bonjour, { type Service } from "bonjour-service";
+import Bonjour from "bonjour-service";
 import { MDNS_SERVICE_TYPE } from "@packet-bridge/shared";
 import type { LanDeviceService } from "./types.js";
+
+interface DiscoveredMdnsService {
+  name: string;
+  type: string;
+  host: string;
+  port: number;
+  addresses?: string[];
+  txt?: Record<string, string>;
+}
 
 const DEFAULT_SERVICE_TYPES = [
   MDNS_SERVICE_TYPE,
@@ -11,7 +20,7 @@ const DEFAULT_SERVICE_TYPES = [
   "workstation",
 ] as const;
 
-function toLanDeviceService(service: Service): LanDeviceService {
+function toLanDeviceService(service: DiscoveredMdnsService): LanDeviceService {
   return {
     name: service.name,
     type: service.type,
@@ -29,7 +38,7 @@ export function discoverMdnsServices(
     const servicesByIp = new Map<string, LanDeviceService[]>();
     const browsers = serviceTypes.map((type) => bonjour.find({ type }));
 
-    const recordService = (service: Service) => {
+    const recordService = (service: DiscoveredMdnsService) => {
       const addresses = service.addresses?.length ? service.addresses : [service.host];
       for (const ip of addresses) {
         if (!ip || ip.includes(":")) {

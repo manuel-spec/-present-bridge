@@ -151,12 +151,27 @@ export class WorkerDiagnostics {
       return null;
     }
 
-    const keys = Object.keys(usages[0]!) as (keyof WorkerResourceUsage)[];
-    const aggregated = {} as WorkerResourceUsage;
-    for (const key of keys) {
-      aggregated[key] = usages.reduce((sum, usage) => sum + (usage[key] ?? 0), 0);
-    }
-    return aggregated;
+    const sum = (key: keyof WorkerResourceUsage) =>
+      usages.reduce((total, usage) => total + (usage[key] ?? 0), 0);
+
+    return {
+      ruUtime: sum("ruUtime"),
+      ruStime: sum("ruStime"),
+      ruMaxRss: sum("ruMaxRss"),
+      ruIxrss: sum("ruIxrss"),
+      ruIdrss: sum("ruIdrss"),
+      ruIsrss: sum("ruIsrss"),
+      ruMinflt: sum("ruMinflt"),
+      ruMajflt: sum("ruMajflt"),
+      ruNswap: sum("ruNswap"),
+      ruInblock: sum("ruInblock"),
+      ruOublock: sum("ruOublock"),
+      ruMsgsnd: sum("ruMsgsnd"),
+      ruMsgrcv: sum("ruMsgrcv"),
+      ruNsignals: sum("ruNsignals"),
+      ruNvcsw: sum("ruNvcsw"),
+      ruNivcsw: sum("ruNivcsw"),
+    };
   }
 
   private async collectWorkerEntry(

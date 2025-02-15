@@ -6,7 +6,7 @@ import type {
   QualityWeights,
   ThroughputEstimate,
 } from "./types.js";
-import { DEFAULT_QUALITY_WEIGHTS, emptyConnectionQuality, gradeFromScore, normalizeQualityWeights } from "./types.js";
+import { emptyConnectionQuality, gradeFromScore, normalizeQualityWeights } from "./types.js";
 
 export interface QualityThresholds {
   excellentLatencyMs: number;

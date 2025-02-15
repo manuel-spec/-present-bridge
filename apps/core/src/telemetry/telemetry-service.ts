@@ -67,7 +67,7 @@ export class TelemetryService {
   }
 
   registerPeer(input: RegisterPeerInput): PeerMetrics {
-    const record = this.store.create({
+    this.store.create({
       peerId: input.peerId,
       roomId: input.roomId,
       displayName: input.displayName,
