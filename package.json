@@ -1,16 +1,17 @@
 {
-  "name": "packet-bridge",
+  "name": "bridge-packet",
   "private": true,
   "version": "0.1.0",
   "description": "LAN multi-platform video chat — core SFU server",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --filter=@packet-bridge/core",
-    "dev:docker": "turbo run dev --filter=@packet-bridge/core",
+    "dev": "turbo run dev --filter=@bridge-packet/core",
+    "dev:docker": "turbo run dev --filter=@bridge-packet/core",
     "start:docker": "node apps/core/dist/index.js",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:coverage": "turbo run test:coverage",
+    "verify": "pnpm lint && pnpm test:coverage && pnpm build",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean --continue"
   },

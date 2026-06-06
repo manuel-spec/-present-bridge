@@ -1,6 +1,6 @@
-# @packet-bridge/shared
+# @bridge-packet/shared
 
-Shared TypeScript types, Zod validators, and constants used by the Packet Bridge core server and future clients.
+Shared TypeScript types, Zod validators, and constants used by the Bridge Packet core server and future clients.
 
 ## Exports
 

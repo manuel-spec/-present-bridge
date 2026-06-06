@@ -177,7 +177,7 @@ export interface EventServiceConfig {
 }
 
 export const DEFAULT_EVENT_SERVICE_CONFIG: EventServiceConfig = {
-  source: "packet-bridge-core",
+  source: "bridge-packet-core",
   auditCapacity: 1000,
   webhooksEnabled: true,
 };

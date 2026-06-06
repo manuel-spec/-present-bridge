@@ -1,5 +1,5 @@
 {
-  "extends": "@packet-bridge/tsconfig/node.json",
+  "extends": "@bridge-packet/tsconfig/node.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src"

@@ -1,5 +1,5 @@
 import Bonjour from "bonjour-service";
-import { MDNS_PROTOCOL, MDNS_SERVICE_TYPE, WS_PATH } from "@packet-bridge/shared";
+import { MDNS_PROTOCOL, MDNS_SERVICE_TYPE, WS_PATH } from "@bridge-packet/shared";
 import type { Env } from "../config/env.js";
 
 export class MdnsBroadcaster {

@@ -1,0 +1,9 @@
+{
+  "name": "node-20-bridge-packet",
+  "user": "ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "install": "pnpm install --frozen-lockfile && pnpm test:coverage"
+}

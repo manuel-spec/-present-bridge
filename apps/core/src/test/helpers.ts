@@ -11,7 +11,7 @@ export function createTestEnv(overrides: Partial<Env> = {}): Env {
     rtcMaxPort: 49999,
     mediasoupWorkerCount: 1,
     mdnsEnabled: false,
-    mdnsServiceName: "packet-bridge",
+    mdnsServiceName: "bridge-packet",
     devMode: true,
     lanScanEnabled: false,
     lanScanTimeoutMs: 5000,

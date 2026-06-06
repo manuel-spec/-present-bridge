@@ -78,7 +78,7 @@ export interface AuthConfig {
 export const DEFAULT_AUTH_CONFIG: Omit<AuthConfig, "secret"> = {
   defaultTtlSeconds: 3600,
   clockSkewSeconds: 30,
-  issuer: "packet-bridge",
+  issuer: "bridge-packet",
   allowAnonymousJoin: true,
   allowAnonymousCreate: true,
 };

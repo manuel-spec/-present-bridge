@@ -1,5 +1,5 @@
 /**
- * Type definitions for the packet-bridge admin and diagnostics subsystem.
+ * Type definitions for the bridge-packet admin and diagnostics subsystem.
  */
 
 /** Severity level for diagnostic findings. */

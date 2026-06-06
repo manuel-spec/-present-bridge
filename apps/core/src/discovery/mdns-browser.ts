@@ -1,5 +1,5 @@
 import Bonjour from "bonjour-service";
-import { MDNS_SERVICE_TYPE } from "@packet-bridge/shared";
+import { MDNS_SERVICE_TYPE } from "@bridge-packet/shared";
 import type { LanDeviceService } from "./types.js";
 
 interface DiscoveredMdnsService {

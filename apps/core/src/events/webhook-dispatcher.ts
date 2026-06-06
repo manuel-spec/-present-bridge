@@ -73,13 +73,13 @@ export class WebhookDispatcher {
 
     const headers: Record<string, string> = {
       "content-type": "application/json",
-      "x-packet-bridge-event": event.type,
-      "x-packet-bridge-event-id": event.eventId,
+      "x-bridge-packet-event": event.type,
+      "x-bridge-packet-event-id": event.eventId,
       ...(webhook.headers ?? {}),
     };
 
     if (webhook.secret) {
-      headers["x-packet-bridge-signature"] = this.signPayload(body, webhook.secret);
+      headers["x-bridge-packet-signature"] = this.signPayload(body, webhook.secret);
     }
 
     const maxAttempts =

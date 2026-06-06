@@ -23,15 +23,15 @@ describe("MdnsBroadcaster", () => {
   it("publishes LAN service details when enabled", () => {
     publish.mockReturnValue({ stop });
     const broadcaster = new MdnsBroadcaster(
-      createTestEnv({ mdnsEnabled: true, httpPort: 3000, mdnsServiceName: "packet-bridge" }),
+      createTestEnv({ mdnsEnabled: true, httpPort: 3000, mdnsServiceName: "bridge-packet" }),
     );
 
     broadcaster.start();
 
     expect(publish).toHaveBeenCalledWith(
       expect.objectContaining({
-        name: "packet-bridge",
-        type: "packet-bridge",
+        name: "bridge-packet",
+        type: "bridge-packet",
         port: 3000,
         txt: expect.objectContaining({ path: "/ws", announcedIp: "127.0.0.1" }),
       }),

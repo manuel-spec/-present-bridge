@@ -1,5 +1,5 @@
 {
-  "name": "@packet-bridge/core",
+  "name": "@bridge-packet/core",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@fastify/websocket": "^11.0.2",
-    "@packet-bridge/shared": "workspace:*",
+    "@bridge-packet/shared": "workspace:*",
     "bonjour-service": "^1.3.0",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1",
@@ -24,7 +24,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@packet-bridge/tsconfig": "workspace:*",
+    "@bridge-packet/tsconfig": "workspace:*",
     "@types/node": "^22.13.4",
     "@types/ws": "^8.5.14",
     "tsx": "^4.19.2",

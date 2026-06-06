@@ -130,7 +130,7 @@ describe("WebhookDispatcher", () => {
     const [, init] = fetchFn.mock.calls[0]!;
     const headers = (init as RequestInit).headers as Record<string, string>;
     expect(headers["x-custom"]).toBe("1");
-    expect(headers["x-packet-bridge-signature"]).toBeTruthy();
+    expect(headers["x-bridge-packet-signature"]).toBeTruthy();
     expect(dispatcher.getDeliveryHistoryForWebhook("wh-1")).toHaveLength(1);
   });
 

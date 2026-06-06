@@ -26,11 +26,11 @@ describe("discoverMdnsServices", () => {
       stop,
     }));
 
-    const promise = discoverMdnsServices(1000, ["packet-bridge"]);
+    const promise = discoverMdnsServices(1000, ["bridge-packet"]);
 
     handlers.get("0")?.({
-      name: "packet-bridge",
-      type: "packet-bridge",
+      name: "bridge-packet",
+      type: "bridge-packet",
       host: "host.local",
       port: 3000,
       addresses: ["192.168.1.20"],
@@ -42,8 +42,8 @@ describe("discoverMdnsServices", () => {
 
     expect(servicesByIp.get("192.168.1.20")).toEqual([
       {
-        name: "packet-bridge",
-        type: "packet-bridge",
+        name: "bridge-packet",
+        type: "bridge-packet",
         port: 3000,
         txt: { path: "/ws" },
       },

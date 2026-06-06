@@ -18,7 +18,7 @@ export class EventBus {
   private totalPublished = 0;
   private readonly defaultSource: string;
 
-  constructor(defaultSource = "packet-bridge-core") {
+  constructor(defaultSource = "bridge-packet-core") {
     this.defaultSource = defaultSource;
     this.handlers.set("*", new Set());
   }

@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import type { HealthResponse } from "@packet-bridge/shared";
+import type { HealthResponse } from "@bridge-packet/shared";
 
 export function registerHealthRoutes(app: FastifyInstance): void {
   app.get("/health", async (_request, reply) => {

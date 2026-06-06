@@ -1,12 +1,12 @@
-# @packet-bridge/core
+# @bridge-packet/core
 
-Node.js SFU signaling server for Packet Bridge. Handles WebRTC media routing via mediasoup, WebSocket signaling, REST room management, and LAN discovery.
+Node.js SFU signaling server for Bridge Packet. Handles WebRTC media routing via mediasoup, WebSocket signaling, REST room management, and LAN discovery.
 
 ## Development
 
 ```bash
 cp .env.example .env
-pnpm --filter @packet-bridge/core dev
+pnpm --filter @bridge-packet/core dev
 ```
 
 ## Smoke test
@@ -14,5 +14,5 @@ pnpm --filter @packet-bridge/core dev
 With the server running:
 
 ```bash
-pnpm --filter @packet-bridge/core smoke
+pnpm --filter @bridge-packet/core smoke
 ```

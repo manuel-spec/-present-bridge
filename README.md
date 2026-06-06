@@ -1,4 +1,4 @@
-# Packet Bridge
+# Bridge Packet
 
 LAN multi-platform video chat platform. The core server is a Node.js SFU built with mediasoup; desktop (Electron + React) and mobile (React Native) clients connect over the local network.
 
@@ -27,8 +27,8 @@ pnpm dev
 | `RTC_MIN_PORT` | `40000` | mediasoup RTC range start |
 | `RTC_MAX_PORT` | `49999` | mediasoup RTC range end |
 | `MEDIASOUP_WORKER_COUNT` | CPU count | mediasoup worker processes |
-| `MDNS_ENABLED` | `true` | Publish `_packet-bridge._tcp` on LAN |
-| `MDNS_SERVICE_NAME` | `packet-bridge` | mDNS service name |
+| `MDNS_ENABLED` | `true` | Publish `_bridge-packet._tcp` on LAN |
+| `MDNS_SERVICE_NAME` | `bridge-packet` | mDNS service name |
 | `DEV_MODE` | `false` | Allow missing `ANNOUNCED_IP` (localhost only) |
 
 ## Endpoints
@@ -44,7 +44,7 @@ pnpm dev
 
 ## LAN discovery
 
-When `MDNS_ENABLED=true`, the server advertises `_packet-bridge._tcp` with TXT records (`path`, `version`, `announcedIp`). Clients can also call `GET /info` or connect manually via `ws://<lan-ip>:3000/ws`.
+When `MDNS_ENABLED=true`, the server advertises `_bridge-packet._tcp` with TXT records (`path`, `version`, `announcedIp`). Clients can also call `GET /info` or connect manually via `ws://<lan-ip>:3000/ws`.
 
 ## Firewall
 

@@ -6,6 +6,6 @@ void bootstrap(env)
     registerSignalHandlers(shutdown);
   })
   .catch((error) => {
-    console.error("Failed to start Packet Bridge core:", error);
+    console.error("Failed to start Bridge Packet core:", error);
     process.exit(1);
   });

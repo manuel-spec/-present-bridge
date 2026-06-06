@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import type { CreateRoomRequest, CreateRoomResponse, GetRoomResponse, ApiErrorResponse, ListRoomsResponse } from "@packet-bridge/shared";
+import type { CreateRoomRequest, CreateRoomResponse, GetRoomResponse, ApiErrorResponse, ListRoomsResponse } from "@bridge-packet/shared";
 import { isAppError } from "../../lib/errors.js";
 import type { RoomService } from "../../domain/room/room-service.js";
 

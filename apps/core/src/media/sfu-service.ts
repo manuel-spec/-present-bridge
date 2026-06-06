@@ -1,5 +1,5 @@
-import type { MediaKind, TransportDirection } from "@packet-bridge/shared";
-import { ErrorCode } from "@packet-bridge/shared";
+import type { MediaKind, TransportDirection } from "@bridge-packet/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import type { types as MediasoupTypes } from "mediasoup";
 import type { Env } from "../config/env.js";
 import type { PeerSession } from "../domain/peer/peer-session.js";

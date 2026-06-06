@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import { AppError } from "../lib/errors.js";
 import { PeerMetricsStore } from "./peer-metrics-store.js";
 import { RoomMetricsAggregator, summarizeRoomHealth } from "./room-metrics-aggregator.js";

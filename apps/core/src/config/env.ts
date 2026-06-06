@@ -6,7 +6,7 @@ import {
   DEFAULT_RTC_MAX_PORT,
   DEFAULT_RTC_MIN_PORT,
   WS_PATH,
-} from "@packet-bridge/shared";
+} from "@bridge-packet/shared";
 
 const envSchema = z.object({
   HOST: z.string().default("0.0.0.0"),
@@ -19,7 +19,7 @@ const envSchema = z.object({
     .enum(["true", "false"])
     .default("true")
     .transform((value) => value === "true"),
-  MDNS_SERVICE_NAME: z.string().min(1).default("packet-bridge"),
+  MDNS_SERVICE_NAME: z.string().min(1).default("bridge-packet"),
   DEV_MODE: z
     .enum(["true", "false"])
     .default("false")

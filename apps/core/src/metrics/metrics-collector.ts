@@ -322,7 +322,7 @@ export class MetricsCollector {
   }
 }
 
-/** Creates a metrics collector with default packet-bridge metric definitions. */
+/** Creates a metrics collector with default bridge-packet metric definitions. */
 export function createMetricsCollector(deps: MetricsCollectorDeps): MetricsCollector {
   return new MetricsCollector(deps);
 }

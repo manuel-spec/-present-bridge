@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { FastifyReply, FastifyRequest } from "fastify";
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import {
   createCombinedRateLimitMiddleware,
   createGlobalRateLimitMiddleware,

@@ -40,7 +40,7 @@ export interface MetricsServiceStatus {
 }
 
 /**
- * Public API for the packet-bridge metrics subsystem.
+ * Public API for the bridge-packet metrics subsystem.
  * Coordinates registry, collector, and Prometheus formatting.
  */
 export class MetricsService {
@@ -189,7 +189,7 @@ export class MetricsService {
   private registerBuiltInMetrics(): void {
     const upGauge = new Gauge("up", {
       namespace: "packet_bridge",
-      help: "Whether the packet-bridge server is running",
+      help: "Whether the bridge-packet server is running",
     });
     upGauge.set(1);
     this.registry.registerGauge(upGauge);

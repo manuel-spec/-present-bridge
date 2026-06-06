@@ -39,7 +39,7 @@ export interface AdminStatusResponse {
 }
 
 /**
- * Public API for the packet-bridge admin and diagnostics subsystem.
+ * Public API for the bridge-packet admin and diagnostics subsystem.
  * Provides unified access to server, worker, room, and peer inspection.
  */
 export class AdminService {

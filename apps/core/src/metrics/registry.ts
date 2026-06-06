@@ -280,7 +280,7 @@ export function resetDefaultRegistry(): MetricRegistry {
   return defaultRegistry;
 }
 
-/** Creates a registry pre-loaded with standard packet-bridge metrics. */
+/** Creates a registry pre-loaded with standard bridge-packet metrics. */
 export function createApplicationRegistry(): MetricRegistry {
   return new MetricRegistry({
     defaultNamespace: "packet_bridge",

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import { AppError, isAppError, toAppError } from "./errors.js";
 
 describe("AppError", () => {

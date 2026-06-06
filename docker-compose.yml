@@ -2,6 +2,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: docker/Dockerfile
       target: production
     ports:
       - "3000:3000"
@@ -22,6 +23,7 @@ services:
   dev:
     build:
       context: .
+      dockerfile: docker/Dockerfile
       target: development
     ports:
       - "3000:3000"
@@ -45,6 +47,7 @@ services:
   test:
     build:
       context: .
+      dockerfile: docker/Dockerfile
       target: test
     profiles:
       - ci

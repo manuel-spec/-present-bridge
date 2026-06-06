@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import WebSocket from "ws";
-import { clientMessageSchema, ErrorCode, type ClientMessage } from "@packet-bridge/shared";
+import { clientMessageSchema, ErrorCode, type ClientMessage } from "@bridge-packet/shared";
 import { SignalingDispatcher } from "./dispatcher.js";
 import { RoomService } from "../domain/room/room-service.js";
 import { createMockSocket, findMessageByType, parseSentMessages } from "../test/helpers.js";

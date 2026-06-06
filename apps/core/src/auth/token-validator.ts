@@ -1,4 +1,4 @@
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import { AppError } from "../lib/errors.js";
 import {
   type AuthConfig,

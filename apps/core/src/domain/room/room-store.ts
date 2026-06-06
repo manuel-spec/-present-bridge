@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { PeerInfo } from "@packet-bridge/shared";
+import type { PeerInfo } from "@bridge-packet/shared";
 
 export interface RoomRecord {
   roomId: string;

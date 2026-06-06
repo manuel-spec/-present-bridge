@@ -1,4 +1,4 @@
-import { MDNS_PROTOCOL, MDNS_SERVICE_TYPE } from "@packet-bridge/shared";
+import { MDNS_PROTOCOL, MDNS_SERVICE_TYPE } from "@bridge-packet/shared";
 import type { Env } from "./config/env.js";
 import { RoomService } from "./domain/room/room-service.js";
 import { MdnsBroadcaster } from "./discovery/mdns.js";
@@ -42,7 +42,7 @@ export async function bootstrap(env: Env): Promise<BootstrapResult> {
       mdns: env.mdnsEnabled ? `${env.mdnsServiceName}.${MDNS_SERVICE_TYPE}.${MDNS_PROTOCOL}` : "disabled",
       rtcPorts: `${env.rtcMinPort}-${env.rtcMaxPort}`,
     },
-    "Packet Bridge core server started",
+    "Bridge Packet core server started",
   );
 
   if (env.lanScanEnabled) {

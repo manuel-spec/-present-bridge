@@ -1,6 +1,6 @@
 /**
  * Smoke test: join a room and request router RTP capabilities over WebSocket.
- * Usage: pnpm --filter @packet-bridge/core smoke (with server running)
+ * Usage: pnpm --filter @bridge-packet/core smoke (with server running)
  */
 import WebSocket from "ws";
 

@@ -3,7 +3,7 @@ import {
   ErrorCode,
   type ClientMessage,
   type ServerMessage,
-} from "@packet-bridge/shared";
+} from "@bridge-packet/shared";
 import WebSocket from "ws";
 import type { RoomService } from "../domain/room/room-service.js";
 import type { SfuService } from "../media/sfu-service.js";

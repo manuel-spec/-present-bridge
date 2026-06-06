@@ -1,5 +1,5 @@
 /**
- * Core telemetry type definitions for packet-bridge peer and room metrics.
+ * Core telemetry type definitions for bridge-packet peer and room metrics.
  */
 
 export const DEFAULT_ROLLING_WINDOW_MS = 30_000;

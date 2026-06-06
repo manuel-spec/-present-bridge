@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import WebSocket from "ws";
 import { AppError } from "../lib/errors.js";
 import { PeerSession } from "../domain/peer/peer-session.js";

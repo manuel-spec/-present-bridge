@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import type { PeerInfo, RoomSummary } from "@packet-bridge/shared";
-import { ErrorCode } from "@packet-bridge/shared";
+import type { PeerInfo, RoomSummary } from "@bridge-packet/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import type { WebSocket } from "ws";
 import { AppError } from "../../lib/errors.js";
 import { PeerSession } from "../peer/peer-session.js";

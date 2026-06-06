@@ -17,12 +17,12 @@ importers:
 
   apps/core:
     dependencies:
+      '@bridge-packet/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@fastify/websocket':
         specifier: ^11.0.2
         version: 11.2.0
-      '@packet-bridge/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
       bonjour-service:
         specifier: ^1.3.0
         version: 1.4.0
@@ -39,7 +39,7 @@ importers:
         specifier: ^3.24.2
         version: 3.25.76
     devDependencies:
-      '@packet-bridge/tsconfig':
+      '@bridge-packet/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
       '@types/node':
@@ -70,7 +70,7 @@ importers:
         specifier: ^3.24.2
         version: 3.25.76
     devDependencies:
-      '@packet-bridge/tsconfig':
+      '@bridge-packet/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@vitest/coverage-v8':

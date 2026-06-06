@@ -1,5 +1,5 @@
 import type { FastifyInstance } from "fastify";
-import type { ServerInfo } from "@packet-bridge/shared";
+import type { ServerInfo } from "@bridge-packet/shared";
 import type { Env } from "../../config/env.js";
 
 export function registerInfoRoutes(app: FastifyInstance, env: Env): void {

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { WebSocket } from "ws";
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import { AppError } from "../../lib/errors.js";
 import { RoomService } from "./room-service.js";
 

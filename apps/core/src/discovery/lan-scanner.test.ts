@@ -53,7 +53,7 @@ describe("LanScanner", () => {
       new Map([
         [
           "192.168.1.20",
-          [{ name: "packet-bridge", type: "packet-bridge", port: 3000, txt: { path: "/ws" } }],
+          [{ name: "bridge-packet", type: "bridge-packet", port: 3000, txt: { path: "/ws" } }],
         ],
       ]),
     );
@@ -78,7 +78,7 @@ describe("LanScanner", () => {
       {
         ip: "192.168.1.20",
         sources: ["mdns"],
-        services: [{ name: "packet-bridge", type: "packet-bridge", port: 3000, txt: { path: "/ws" } }],
+        services: [{ name: "bridge-packet", type: "bridge-packet", port: 3000, txt: { path: "/ws" } }],
       },
     ]);
   });
@@ -88,7 +88,7 @@ describe("LanScanner", () => {
       new Map([
         [
           "192.168.1.10",
-          [{ name: "packet-bridge", type: "packet-bridge", port: 3000, txt: { path: "/ws" } }],
+          [{ name: "bridge-packet", type: "bridge-packet", port: 3000, txt: { path: "/ws" } }],
         ],
       ]),
     );
@@ -99,7 +99,7 @@ describe("LanScanner", () => {
     expect(result.devices[0]).toMatchObject({
       ip: "192.168.1.10",
       sources: ["ping", "mdns"],
-      services: [{ name: "packet-bridge", type: "packet-bridge", port: 3000 }],
+      services: [{ name: "bridge-packet", type: "bridge-packet", port: 3000 }],
     });
   });
 

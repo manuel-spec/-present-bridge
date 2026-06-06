@@ -1,5 +1,5 @@
 /**
- * Core type definitions for the packet-bridge metrics subsystem.
+ * Core type definitions for the bridge-packet metrics subsystem.
  * Aligned with Prometheus metric types and exposition conventions.
  */
 

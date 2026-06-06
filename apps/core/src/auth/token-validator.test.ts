@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { ErrorCode } from "@packet-bridge/shared";
+import { ErrorCode } from "@bridge-packet/shared";
 import { AppError } from "../lib/errors.js";
 import { createTokenGenerator } from "./token-generator.js";
 import { TokenValidator, createTokenValidator } from "./token-validator.js";
@@ -65,7 +65,7 @@ describe("TokenValidator", () => {
       permissions: [Permission.JOIN] as const,
       issuedAt: Math.floor(Date.now() / 1000) + 3600,
       expiresAt: Math.floor(Date.now() / 1000) + 7200,
-      issuer: "packet-bridge",
+      issuer: "bridge-packet",
     };
     const token = generator.encodeToken(payload, generator.signPayload(payload));
     const outcome = validator.validate(token);

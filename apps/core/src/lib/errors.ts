@@ -1,4 +1,4 @@
-import { ErrorCode, type ErrorPayload } from "@packet-bridge/shared";
+import { ErrorCode, type ErrorPayload } from "@bridge-packet/shared";
 
 export class AppError extends Error {
   readonly code: ErrorCode;

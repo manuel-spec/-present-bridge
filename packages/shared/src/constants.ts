@@ -1,6 +1,6 @@
 export const APP_VERSION = "0.1.0" as const;
 
-export const MDNS_SERVICE_TYPE = "packet-bridge" as const;
+export const MDNS_SERVICE_TYPE = "bridge-packet" as const;
 export const MDNS_PROTOCOL = "tcp" as const;
 export const WS_PATH = "/ws" as const;
 
